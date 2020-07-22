@@ -56,13 +56,18 @@
       </template>
     </vue-csv-import>
     <div v-if="csv">
-      <b-button @click.prevent="submitz" variant="success"
-        >Confirm Save !</b-button
-      >
+      <b-button @click.prevent="submitz" variant="success" :disabled="above500">
+        Confirm Save !
+      </b-button>
+      <b-alert show v-if="above500" variant="danger">
+        Firestore Limits maximum 500 writes allowed per request. This users
+        firebase Batch Wriete, so try to keep the number of records in csv file
+        to be less than 500 at a time.
+      </b-alert>
     </div>
-    <div>
+    <!-- <div>
       {{ csv }}
-    </div>
+    </div> -->
   </b-container>
 </template>
 
@@ -87,6 +92,11 @@ export default {
       batch.commit().then(function() {
         that.$router.replace("/");
       });
+    }
+  },
+  computed: {
+    above500() {
+      return this.csv.length > 500 ? true : false;
     }
   }
 };
