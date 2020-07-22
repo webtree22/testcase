@@ -50,7 +50,7 @@ export default {
   },
   data() {
     return {
-      perPage: 3,
+      perPage: 5,
       currentPage: 1,
       fbContacts: [],
       currentUser: null,
@@ -66,7 +66,7 @@ export default {
   },
   firestore() {
     return {
-      fbContacts: db.collection(collectionPath).limit(7)
+      fbContacts: db.collection(collectionPath).limit(50)
     };
   },
   computed: {
