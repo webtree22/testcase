@@ -111,16 +111,20 @@ export default {
   methods: {
     async register() {
       try {
-        const user = await auth.createUserWithEmailAndPassword(
+        const res = await auth.createUserWithEmailAndPassword(
           this.email,
           this.password
         );
-        if (user) {
-          db.collection("profiles").add({
-            name: this.name,
-            email: this.email,
-            about: ""
-          });
+        console.log(res.user);
+        if (res.user) {
+          console.log(2);
+          db.collection("profiles")
+            .doc(res.user.uid)
+            .set({
+              name: this.name,
+              email: this.email,
+              about: ""
+            });
         }
         this.$router.replace("/");
       } catch (err) {

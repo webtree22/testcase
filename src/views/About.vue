@@ -20,5 +20,9 @@
       }
       </pre>
     </code>
+
+    <h4>Sign In Form Email Password Unit Test</h4>
+    <img src="@/assets/signintest.png" />
+    <p class="mt-4">&nbsp;</p>
   </b-container>
 </template>

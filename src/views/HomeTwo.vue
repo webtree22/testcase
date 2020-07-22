@@ -7,10 +7,13 @@
     </b-alert>
     <h2 class="mt-3">Contacts (Alternative Solution)</h2>
     <b-alert variant="warning" show>
-      This solution implements Bootstrap-Vue Pagination component. This solution
-      has one <strong>serious drawback</strong> as it fetches all the documents
-      in the collection at once, which actually defies the purpose of the
-      pagination itself. <router-link to="/">Back to Home</router-link>
+      This solution implements Bootstrap-Vue Pagination component.<br />This
+      solution has one <strong>serious drawback</strong> (not because of
+      Bootstrap-Vue Pagination) as it fetches all the documents in the
+      collection at once, which actually defies the purpose of the pagination
+      itself.<br />Not to read all the documents, this demo fetches only 50
+      documents max. <br />
+      <router-link to="/">Back to Home</router-link>
     </b-alert>
     <div class="overflow-auto mt-3">
       <b-pagination
@@ -63,7 +66,7 @@ export default {
   },
   firestore() {
     return {
-      fbContacts: db.collection(collectionPath)
+      fbContacts: db.collection(collectionPath).limit(7)
     };
   },
   computed: {
